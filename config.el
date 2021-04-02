@@ -60,10 +60,8 @@
 ;; Force emacs ask yes no question when exiting
 (setq confirm-kill-emacs 'y-or-n-p)
 
+;; start Emacs in 120*50 characters
 (setq initial-frame-alist '((width . 120) (height . 50)))
-
-;; magit key binding
-(global-set-key (kbd "C-x g") 'magit-status)
 
 ;;  git-gutter-mode
 (global-git-gutter-mode +1)
