@@ -110,3 +110,29 @@
   )
 
 (global-set-key (kbd "C-c C--") 'comment-or-uncomment-line-or-region)
+
+;; If aspell is leaded, map mouse clicks. We can't (easily) do a mouse-2 without
+;; an actual mouse!
+(eval-after-load "flyspell"
+  '(progn
+     (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
+     (define-key flyspell-mouse-map [mouse-3] #'undefined)))
+
+
+;;------------------------------------------------------------------------------
+;; ivy and counsel
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-h f") 'counsel-describe-function)
+(global-set-key (kbd "C-h v") 'counsel-describe-variable)
+(global-set-key (kbd "C-h l") 'counsel-find-library)
+(global-set-key (kbd "C-h i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "C-h u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(setq counsel-find-file-ignore-regexp "\\.vo\\|\\.aux\\|\\.glob\\|.DS_STORE")
