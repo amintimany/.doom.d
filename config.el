@@ -69,6 +69,13 @@
 ;;  sml-modeline-mode
 (sml-modeline-mode t)
 
+;; Agda-input-mode
+(defun enable-agda-input () (interactive) (progn (require 'agda-input) (set-input-method "Agda")))
+
+;; column enforce mode
+(require 'column-enforce-mode)
+(setq column-enforce-column 80)
+
 ;; configuring auctex
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
@@ -87,15 +94,14 @@
 ;; Coq and ProofGeneral
 (add-hook 'coq-mode-hook 'column-enforce-mode)
 
-(add-hook 'coq-mode-hook 'enable-show-trailing-whitespace)
-
 (setq coq-double-hit-enable t)
 
 ;; Load company-coq when opening Coq files
-(add-hook 'coq-mode-hook #'company-coq-mode)
+(add-hook 'coq-mode-hook 'company-coq-mode)
 ;; Disable symbol prettification
-(setq company-coq-disabled-features '(prettify-symbols))
+(after! company-coq (setq company-coq-disabled-features '(prettify-symbols)))
 
+(add-hook 'coq-mode-hook 'enable-agda-input)
 
 ;;------------------------------------------------------------------------------
 ;; Bind C-c C-- to toggling comments.
