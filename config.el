@@ -58,7 +58,7 @@
 ;; Increase the default font size
 (set-face-attribute 'default nil :height 150)
 ;; Force emacs ask yes no question when exiting
-(setq confirm-kill-emacs 'y-or-n-p)
+;; (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; start Emacs in 120*50 characters
 (setq initial-frame-alist '((width . 120) (height . 50)))
