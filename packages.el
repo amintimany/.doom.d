@@ -51,3 +51,12 @@
 (package! git-gutter)
 (package! sml-modeline)
 (package! column-enforce-mode)
+
+(package! proof-general)
+(package! company-coq)
+
+(package! auctex)
+(package! company-auctex)
+(package! company-reftex)
+(package! evil-tex)
+(package! latex-preview-pane)

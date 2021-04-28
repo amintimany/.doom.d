@@ -53,6 +53,13 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+
+;; ---------------------------------------------------------
+
+(load! "coq" doom-private-dir)
+
+;; ---------------------------------------------------------
+
 ;; Set locale
 (setenv "LANG" "en_US.UTF-8")
 ;; Increase the default font size
@@ -77,19 +84,21 @@
 (setq column-enforce-column 80)
 
 ;; configuring auctex
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-(setq TeX-PDF-mode t)
-(setq TeX-source-correlate-method (quote synctex))
-(setq TeX-source-correlate-mode t)
+(after! tex
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq TeX-PDF-mode t)
+  (setq TeX-source-correlate-method (quote synctex))
+  (setq TeX-source-correlate-mode t)
+  (setq-default TeX-master t)
 
-(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
-     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -r %n %o %b")))
+  (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+  (setq TeX-view-program-list
+        '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -r %n %o %b"))))
 
 ;; Coq and ProofGeneral
 (add-hook 'coq-mode-hook 'column-enforce-mode)
@@ -127,18 +136,22 @@
 
 ;;------------------------------------------------------------------------------
 ;; ivy and counsel
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-h f") 'counsel-describe-function)
-(global-set-key (kbd "C-h v") 'counsel-describe-variable)
-(global-set-key (kbd "C-h l") 'counsel-find-library)
-(global-set-key (kbd "C-h i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "C-h u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+(after! (:and ivy counsel)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (global-set-key "\C-s" 'swiper)
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "C-h f") 'counsel-describe-function)
+  (global-set-key (kbd "C-h v") 'counsel-describe-variable)
+  (global-set-key (kbd "C-h l") 'counsel-find-library)
+  (global-set-key (kbd "C-h i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "C-h u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
-(setq counsel-find-file-ignore-regexp "\\.vo\\|\\.aux\\|\\.glob\\|.DS_STORE")
+  (setq counsel-find-file-ignore-regexp "\\.vo\\|\\.aux\\|\\.glob\\|.DS_STORE"))
+
+(after! evil-maps
+  (define-key evil-motion-state-map "\\" nil))
