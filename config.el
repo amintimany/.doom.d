@@ -154,4 +154,5 @@
   (setq counsel-find-file-ignore-regexp "\\.vo\\|\\.aux\\|\\.glob\\|.DS_STORE"))
 
 (after! evil-maps
-  (define-key evil-motion-state-map "\\" nil))
+  (define-key evil-motion-state-map "\\" nil)
+  (define-key evil-motion-state-map (kbd "C-o") 'evil-execute-in-emacs-state))
