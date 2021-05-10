@@ -60,6 +60,9 @@
 
 ;; ---------------------------------------------------------
 
+;;  Delete selected text and replace it
+(delete-selection-mode 1)
+
 ;; Set locale
 (setenv "LANG" "en_US.UTF-8")
 ;; Increase the default font size
