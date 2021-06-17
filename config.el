@@ -65,8 +65,14 @@
 
 ;; Set locale
 (setenv "LANG" "en_US.UTF-8")
-;; Increase the default font size
-(set-face-attribute 'default nil :height 150)
+;; Adjust the default font size
+(defun adjust-font-size ()
+  "Set the font hieght as 0.1 (x-display-pixel-height)"
+  (progn
+    (set-face-attribute 'default nil :height (floor (* (x-display-pixel-height) 0.1)))
+    (set-face-attribute 'mode-line nil :height (floor (* (x-display-pixel-height) 0.1)))))
+(adjust-font-size)
+
 ;; Force emacs ask yes no question when exiting
 ;; (setq confirm-kill-emacs 'y-or-n-p)
 
@@ -84,7 +90,7 @@
 
 ;; column enforce mode
 (require 'column-enforce-mode)
-(setq column-enforce-column 120)
+(setq column-enforce-column 100)
 
 ;; configuring auctex
 (after! tex
