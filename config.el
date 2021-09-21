@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-monokai-spectrum)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -70,8 +70,10 @@
   "Set the font hieght as 0.1 (x-display-pixel-height)"
   (progn
     (set-face-attribute 'default nil :height (floor (* (x-display-pixel-height) 0.1)))
-    (set-face-attribute 'mode-line nil :height (floor (* (x-display-pixel-height) 0.1)))))
-(adjust-font-size)
+    (setq doom-modeline-height 25)))
+
+(when (display-graphic-p)
+  (adjust-font-size))
 
 ;; Force emacs ask yes no question when exiting
 ;; (setq confirm-kill-emacs 'y-or-n-p)
@@ -99,6 +101,7 @@
   (add-hook 'LaTeX-mode-hook 'visual-line-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
   (setq reftex-plug-into-AUCTeX t)
   (setq TeX-PDF-mode t)
   (setq TeX-source-correlate-method (quote synctex))
