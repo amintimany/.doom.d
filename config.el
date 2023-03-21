@@ -68,14 +68,14 @@
 ;; Set locale
 (setenv "LANG" "en_US.UTF-8")
 ;; Adjust the default font size
-(defun adjust-font-size ()
+(defun adjust-font-size (f)
   "Set the font hieght as 0.1 (x-display-pixel-height)"
   (progn
-    (set-face-attribute 'default nil :height (floor (* (x-display-pixel-height) 0.1)))
-    (setq doom-modeline-height 25)))
+    (set-face-attribute 'default nil :height (floor (* f (* (x-display-pixel-height) 0.1))))
+    (setq doom-modeline-height (floor (* f 25)))))
 
 (when (display-graphic-p)
-  (adjust-font-size))
+  (adjust-font-size 1))
 
 ;; Force emacs ask yes no question when exiting
 ;; (setq confirm-kill-emacs 'y-or-n-p)
