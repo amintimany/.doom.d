@@ -124,7 +124,7 @@
 ;; Load company-coq when opening Coq files
 (add-hook 'coq-mode-hook 'company-coq-mode)
 ;; Disable symbol prettification
-(after! company-coq (setq company-coq-disabled-features '(prettify-symbols)))
+(after! company-coq (setq company-coq-disabled-features '(prettify-symbols smart-subscripts)))
 
 (add-hook 'coq-mode-hook 'enable-agda-input)
 
