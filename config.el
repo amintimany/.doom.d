@@ -93,8 +93,7 @@
 (defun enable-agda-input () (interactive) (progn (require 'agda-input) (set-input-method "Agda")))
 
 ;; column enforce mode
-(setq fill-column 120)
-(global-display-fill-column-indicator-mode t)
+(defun enable-fill-column-indicator () (progn (setq fill-column 120) (display-fill-column-indicator-mode t)))
 
 ;; configuring auctex
 (after! tex
@@ -114,8 +113,11 @@
   (setq TeX-view-program-list
         '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -r %n %o %b"))))
 
+;; elisp mode
+(add-hook 'emacs-lisp-mode-hook 'enable-fill-column-indicator)
+
 ;; Coq and ProofGeneral
-(add-hook 'coq-mode-hook 'column-enforce-mode)
+(add-hook 'coq-mode-hook 'enable-fill-column-indicator)
 
 (setq coq-double-hit-enable t)
 
