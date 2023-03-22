@@ -93,8 +93,8 @@
 (defun enable-agda-input () (interactive) (progn (require 'agda-input) (set-input-method "Agda")))
 
 ;; column enforce mode
-(require 'column-enforce-mode)
-(setq column-enforce-column 100)
+(setq fill-column 120)
+(global-display-fill-column-indicator-mode t)
 
 ;; configuring auctex
 (after! tex
