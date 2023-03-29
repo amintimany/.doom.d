@@ -149,6 +149,9 @@
      (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
      (define-key flyspell-mouse-map [mouse-3] #'undefined)))
 
+;; Bind the command-x key to cut as expected on a mac.
+(global-set-key (kbd "s-x") 'evil-delete)
+
 
 ;;------------------------------------------------------------------------------
 ;; ivy and counsel
@@ -157,7 +160,6 @@
   (setq enable-recursive-minibuffers t)
   (global-set-key "\C-s" 'swiper)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
   (global-set-key (kbd "C-h f") 'counsel-describe-function)
   (global-set-key (kbd "C-h v") 'counsel-describe-variable)
