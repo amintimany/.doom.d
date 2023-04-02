@@ -58,5 +58,5 @@
 (package! auctex)
 (package! company-auctex)
 (package! company-reftex)
-(package! evil-tex)
+;; (package! evil-tex)
 (package! latex-preview-pane)
