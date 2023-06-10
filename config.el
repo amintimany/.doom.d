@@ -182,26 +182,17 @@
 ;;------------------------------------------------------------------------------
 ;; make sure opam is initialized properly
 
+(defun opam-env ()
+  (interactive nil)
+  (dolist (var (car (read-from-string (shell-command-to-string "opam config env --sexp"))))
+    (setenv (car var) (cadr var))))
 
-(defvar opampresent 'nil "Whether emacs is presnt or not.")
+(defvar opampresent 'nil "Whether opam is presnt or not.")
 
 (if (executable-find "opam") (setq opampresent 't) (message "Opam not found! Opam will not be set up."))
 
 ;; set up opam if installed
 
-(if opampresent
-    (progn
-      ;; Add opam emacs directory to the load-path
-      (setq opam-share
-	    (substring
-	     (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
-      (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-      ;; Add opam bin directory to path and exec-path
-      (setq opam-bin
-	    (substring
-	     (shell-command-to-string "opam config var bin 2> /dev/null") 0 -1))
-      (setenv "PATH" (concat (getenv "PATH") (concat ":" opam-bin)))
-      (setq exec-path (append exec-path (cons opam-bin nil)))
-      )
-  ()
-  )
+
+
+(if opampresent (opam-env) nil)
