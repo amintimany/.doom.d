@@ -150,7 +150,8 @@
      (define-key flyspell-mouse-map [mouse-3] #'undefined)))
 
 ;; Bind the command-x key to cut as expected on a mac.
-(global-set-key (kbd "s-x") 'evil-delete)
+(global-set-key (kbd "s-x") 'kill-region)
+(after! evil (global-set-key (kbd "s-x") 'evil-delete))
 
 
 ;;------------------------------------------------------------------------------
