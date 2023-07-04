@@ -113,6 +113,9 @@
   (setq TeX-view-program-list
         '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -r %n %o %b"))))
 
+(setenv "PATH" (concat (getenv "PATH") ":/Library/TeX/texbin/"))
+(setq exec-path (append exec-path '("/Library/TeX/texbin/")))
+
 ;; elisp mode
 (add-hook 'emacs-lisp-mode-hook 'enable-fill-column-indicator)
 
